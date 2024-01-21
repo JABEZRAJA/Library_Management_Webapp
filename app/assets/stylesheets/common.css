@@ -1,0 +1,365 @@
+body {
+    font-family: 'Philosopher', serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('https://wallpaper-house.com/data/out/8/wallpaper2you_231925.jpg') center center fixed;
+    background-size: cover;
+  }
+  
+  .user-details {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    width: 62.5rem;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #aa8531;
+    font-family: 'Philosopher',serif;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  thead {
+    display: table-header-group;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #900c19;
+    color: #f2c452;
+  }
+  
+  a.button {
+    display: inline-block;
+    background-color: #900c19;
+    color: #f2c452;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 20px;
+    border-radius: 4px;
+  }
+  
+  .icon {
+    margin-right: 5px;
+  }
+  
+  a.button:hover {
+    background-color: #700215;
+  }
+
+
+.user-details {
+    width: 50%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-details th, .user-details td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .user-details th {
+    background-color: #f5f1e9;
+    color: #886619;
+  }
+  
+  .user-details td {
+    font-size: 16px;
+  }
+  
+  .user-details a {
+    display: block;
+    margin-top: 10px;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #900c19;
+    color: #f2c452;
+    cursor: pointer;
+    font-size:16px;
+  }
+  
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cofd {
+    display: table-cell;    height: 20px;
+    position: relative;
+    width: 13pc;
+    border: 1px solid #d5c8aa;
+    font-size: 15px;
+    font-family: 'Philosopher',serif;
+    outline: none;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 40px;
+    width: 650px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
+}
+
+.user-card:before {
+    content: '';
+    position: absolute;
+    height: 300%;
+    width: 173px;
+    background: #262626;
+    top: -60px;
+    left: -125px;
+    z-index: 0;
+    transform: rotate(17deg);
+}
+
+.user-card-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+}
+
+.user-card-img img {
+    width: 200px;
+    height: 165px;
+    object-fit: cover;
+    /* border-radius: 50%; */
+}
+
+.user-card-img .initials {
+    background-color: #daa000;
+    color: #fff;
+    font-size: 80px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-card-info {
+    text-align: center;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 10px;
+}
+
+.profile-header h2 {
+    font-size: 24px;
+    margin: 0;
+    font-family: 'Philosopher', serif;
+    letter-spacing: 3px;
+    color: #333;
+}
+
+.edit-link a {
+    cursor: pointer;
+    color: #a37e2b;
+    font-size: 24px;
+    letter-spacing: 2.8px;
+    font-family: 'Philosopher', serif;
+    height: auto;
+    line-height: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.edit-link i {
+    line-height: 1pc;
+}
+.btn-back {
+  display: block;
+  background-color: #900c19;
+  color: #f2c452;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .user-card {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .user-card-img {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+
+    .user-card-info {
+        text-align: left;
+    }
+}
+
+@media (max-width: 767px) {
+    .wrapper {
+        padding-top: 3%;
+    }
+
+    .user-card:before {
+        width: 300%;
+        height: 200px;
+        transform: rotate(0);
+    }
+
+    .user-card-info h2 {
+        margin-top: 25px;
+        font-size: 35px;
+    }
+
+    .user-card-info p span {
+        display: block;
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+}
+
+/* NEW and EDIT */
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  color: #e44d26;
+  margin-bottom: 10px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.required-star {
+  color: #e44d26;
+  margin-left: 5px;
+}
+
+.submit-button,
+.button {
+  background-color: #900c19;
+  color: #f2c452;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-block;
+  width:10pc;
+  font-size:16px;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.errors {
+  color: #e44d26;
+  margin-bottom: 10px;
+}
+
+.autocomplete {
+position: relative;
+display: inline-block;
+}
+
+.autocomplete-input {
+width: 100%;
+padding: 8px;
+margin-bottom: 10px;
+box-sizing: border-box;
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+.autocomplete-list {
+position: absolute;
+z-index: 1;
+width: 100%;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+background-color: #fff;
+}
+
+.autocomplete-item {
+padding: 8px;
+cursor: pointer;
+transition: background-color 0.3s;
+}
+
+.autocomplete-item:hover {
+background-color: #f4f4f4;
+}
+
+.btn-back a{
+    color: #f2c452;
+    text-decoration: none;
+}

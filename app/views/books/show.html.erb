@@ -26,9 +26,9 @@
     <div class="wrapper">
         <div class="user-card">
             <div class="user-card-img">
-                <%# <div class="initials">
+                 <div class="initials">
                     <%= image_tag @book.image, style: 'width: auto;', loading: 'lazy' if @book.image.present? %>
-                <%# </div> %>
+                 </div>
             </div>
             <div class="user-card-info">
                 <div class="profile-header">
@@ -69,12 +69,6 @@
                     <tr>
                         <th class="cofd">Published Date</th>
                         <td class="cofd"><%= @book.published_date %></td>
-                    </tr>
-                    <tr>
-                        <th class="cofd">Image</th>
-                        <td class="cofd">
-                            <%= image_tag @book.image, style: 'width: auto;', loading: 'lazy' if @book.image.present? %>
-                        </td>
                     </tr>
                 </table>
                 <% if current_user && current_user.admin? %>

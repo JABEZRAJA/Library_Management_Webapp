@@ -1,0 +1,38 @@
+<style>
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f5f1e9;
+    position: fixed;
+    top: 0;
+    width: -webkit-fill-available;
+  }
+
+  .logo {
+    max-height: 40px; /* Set your desired max height for the logo */
+  }
+
+  .cart-icon,
+  .profile-icon {
+    max-height: 30px; /* Set your desired max height for cart and profile icons */
+  }
+</style>
+
+<nav class="navbar">
+  <%= link_to root_path do %>
+    <%= image_tag('https://img.freepik.com/premium-vector/black-white-logo-letter-jr_773552-361.jpg', alt: 'Your Logo', class: 'logo') %>
+  <% end %>
+
+  <!-- Cart Image -->
+  <%# <%= link_to cart_path do %>
+    <%= image_tag('https://png.pngtree.com/png-vector/20190909/ourmid/pngtree-outline-bag-icon-symbol-isolated-png-image_1727847.jpg', alt: 'Shopping Cart', class: 'cart-icon') %>
+  <%# <% end %>
+<% if current_user %>
+  <%= link_to profile_path(current_user) do %>
+    <%= image_tag('https://i.pinimg.com/originals/61/f7/5e/61f75ea9a680def2ed1c6929fe75aeee.jpg', alt: 'User Profile', class: 'profile-icon') %>
+  <% end %>
+<% end %>
+
+  <%= link_to "Books", books_path %>
+</nav>

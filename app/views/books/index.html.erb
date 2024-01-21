@@ -26,21 +26,25 @@
           <th>Title</th>
           <th>Genre</th>
           <th>View</th>
+          <% if current_user && current_user.admin? %>
           <th>Remove</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
         <% @books.each do |book| %>
           <tr>
             <td style="text-align: center;">
-            <%= image_tag book.image, style: 'width: auto;', loading: 'lazy' if book.image.present? %>
+            <%= image_tag book.image, style: 'width: auto; height:120px;', loading: 'lazy' if book.image.present? %>
             </td>
             <td><%= book.genre %></td>
             <td><%= book.title %></td>
             <td><%= link_to 'Show', book_path(book) %></td>
+            <% if current_user && current_user.admin? %>
             <td>
               <%= link_to 'Delete', book_path(book), method: :delete, data: { confirm: 'Are you sure on this Delete?' } %>
             </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>

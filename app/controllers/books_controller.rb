@@ -19,7 +19,7 @@ class BooksController < ApplicationController
   def create
     if current_user.role == 'admin'
       @book = Book.new(book_params)
-      @book.user = current_user
+      @book.user_id = current_user.id # Assign the user_id directly
       if @book.save
         redirect_to @book, notice: 'Book was successfully created.'
       else
@@ -28,7 +28,7 @@ class BooksController < ApplicationController
     else
       redirect_to books_path, alert: 'Only admin users can create books.'
     end
-  end
+  end  
 
   def edit
   end
