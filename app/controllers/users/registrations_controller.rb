@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -10,9 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  puts ">>>>>> Inside create action" # Add this line for debugging
+  def create
+    super do |resource|
+      resource.role = params[:user][:role].presence || :user
+      resource.save
+    end
+  end 
 
   # GET /resource/edit
   # def edit
@@ -26,6 +30,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   # def destroy
+  #   super
+  # end
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :phone_number, :role])
+  end
+
+  # def sign_up(resource_name, resource)
+  #   resource.role = params[:user][:role].presence || :user
+  #   resource.save
   #   super
   # end
 

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JRLibManagement</title>
+    <%# <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: url('https://wallpaper-house.com/data/out/8/wallpaper2you_231925.jpg') center center fixed;
+            background-size: cover;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="user-card">
+            <div class="user-card-img">
+                <%# <div class="initials">
+                    <%= image_tag @book.image, style: 'width: auto;', loading: 'lazy' if @book.image.present? %>
+                <%# </div> %>
+            </div>
+            <div class="user-card-info">
+                <div class="profile-header">
+                    <h2>Book Detail</h2>
+                    <% if current_user && current_user.admin? %>
+                        <p class="edit-link">
+                            <%= link_to edit_book_path(@book) do %>
+                                <i class="fas fa-edit"></i> Edit
+                            <% end %>
+                        </p>
+                    <% end %>
+                </div>
+                <table>
+                    <tr>
+                        <th class="cofd">Title</th>
+                        <td class="cofd"><%= @book.title %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Author Name</th>
+                        <td class="cofd"><%= @book.author_name %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Genre</th>
+                        <td class="cofd"><%= @book.genre %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">ISBN</th>
+                        <td class="cofd"><%= @book.isbn %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Number of Copies</th>
+                        <td class="cofd"><%= @book.copies %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Description</th>
+                        <td class="cofd"><%= @book.description %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Published Date</th>
+                        <td class="cofd"><%= @book.published_date %></td>
+                    </tr>
+                    <tr>
+                        <th class="cofd">Image</th>
+                        <td class="cofd">
+                            <%= image_tag @book.image, style: 'width: auto;', loading: 'lazy' if @book.image.present? %>
+                        </td>
+                    </tr>
+                </table>
+                <% if current_user && current_user.admin? %>
+                    <p class="btn-back">
+                        <%= link_to 'Back', books_path %>
+                    </p>
+                <% else %>
+                    <!-- Add your code for the Borrow button or any other user-specific actions here -->
+                <% end %>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<%= form_with(model: book, local: true) do |f| %>
+  <p>
+    <%= f.label :Title %>
+    <%= f.text_field :title, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :genre %><br>
+    <%= f.text_field :genre %>
+  </p>
+
+  <p>
+    <%= f.label :Author_Name %>
+    <%= f.text_field :author_name, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :ISBN %>
+    <%= f.text_field :isbn, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :Copies %>
+    <%= f.number_field :copies, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :Description %>
+    <%= f.text_area :description, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :Published_Date %>
+    <%= f.date_field :published_date, required: true %>
+  </p>
+
+  <p>
+    <%= f.label :Image %>
+    <% if @book.image.attached? %>
+      <div>
+        <strong>Current Image:</strong>
+        <%= image_tag @book.image, style: 'max-width: 100px; max-height: 100px;', loading: 'lazy' %>
+      </div>
+    <% end %>
+    <%= f.file_field :image %>
+  </p>
+
+  <p class="button-container">
+    <%= f.submit 'Submit', class: 'submit-button' %>
+    <%= link_to 'Back', books_path, class: 'button' %>
+  </p>
+<% end %>
