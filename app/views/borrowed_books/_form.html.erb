@@ -1,0 +1,45 @@
+<%= link_to 'Borrow', borrowed_books_path(book_id: @book.id), class: 'button', remote: true, method: :post %>
+  <% if borrowed_book.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(borrowed_book.errors.count, "error") %> prohibited this borrowed book from being saved:</h2>
+
+      <ul>
+        <% borrowed_book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%= current_user.first_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :book_id %>
+    <% book = Book.find_by(id: params[:book_id]) %>
+    <% if book.present? %>
+    <%= form.hidden_field :book_id, value: book.id %>
+    <%= book.title %>
+    <% else %>
+     <p>Book not found</p>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.label :borrow_date %>
+    <%= form.hidden_field :borrow_date, value: Time.now %>
+    <%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>
+  </div>
+
+  <div class="field">
+    <%= form.label :return_date %>
+    <%= form.date_field :return_date, value: (Date.current + 8).to_s %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

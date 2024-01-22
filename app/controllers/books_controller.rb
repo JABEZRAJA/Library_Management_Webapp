@@ -6,6 +6,10 @@ class BooksController < ApplicationController
   end
 
   def show
+    @book = Book.find_by(id: params[:id])
+    return if @book.present?
+
+    render json: { error: 'Book not found' }, status: 404
   end
 
   def new
@@ -19,7 +23,7 @@ class BooksController < ApplicationController
   def create
     if current_user.role == 'admin'
       @book = Book.new(book_params)
-      @book.user_id = current_user.id # Assign the user_id directly
+      @book.user_id = current_user.id
       if @book.save
         redirect_to @book, notice: 'Book was successfully created.'
       else
@@ -28,9 +32,10 @@ class BooksController < ApplicationController
     else
       redirect_to books_path, alert: 'Only admin users can create books.'
     end
-  end  
+  end
 
   def edit
+    # coming soon
   end
 
   def update
@@ -44,6 +49,11 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     redirect_to books_url, notice: 'Book was successfully destroyed.'
+  end
+
+  def search
+    @books = Book.where("title LIKE ?", "%#{params[:query]}%")
+    render 'index'
   end
 
   private

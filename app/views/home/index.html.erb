@@ -1,11 +1,61 @@
-<% if user_signed_in? %> 
-  <div> Welcome <%= current_user.email %> </div> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
-<% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
-<% end %>
+<!DOCTYPE html>
+<html>
 
-<% if current_user && current_user.role == 'admin' %>
-  <%= link_to "Create book", new_book_path %>
-  <%= link_to "Books", books_path %>
-<% end %>
+<head>
+  <title>JRLibManagement</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+  <div class="user-details">
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 2pc;">
+      <h1>All Books</h1>
+    <% if current_user && current_user.admin? %>
+      <%= link_to new_book_path, class: 'button' do %>
+        <i class="fas fa-plus icon"></i> Add
+      <% end %>
+    <% end %>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th class="align_center">Image</th>
+          <th>Title</th>
+          <th>Genre</th>
+          <th>View</th>
+          <% if current_user && current_user.admin? %>
+          <th>Remove</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @books.each do |book| %>
+          <tr>
+            <td style="text-align: center;">
+            <%= image_tag book.image, style: 'width: auto; height:120px;', loading: 'lazy' if book.image.present? %>
+            </td>
+            <td><%= book.title %></td>
+            <td><%= book.genre %></td>
+            <td><%= link_to 'Show', book_path(book) %></td>
+            <% if current_user && current_user.admin? %>
+            <td>
+              <%= link_to 'Delete', book_path(book), method: :delete, data: { confirm: 'Are you sure on this Delete?' } %>
+            </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+
+  <%= yield %>
+</body>
+
+</html>
+

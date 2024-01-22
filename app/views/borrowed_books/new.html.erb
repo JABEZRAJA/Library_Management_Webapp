@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Book</title>
+  <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+  <style>
+    body {
+        font-family: 'Philosopher', serif;
+        background-color: #f4f4f4;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url('https://wallpaper-house.com/data/out/8/wallpaper2you_231925.jpg') center center fixed;
+        background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lending Detail</h1>
+    <% if @borrowed_book.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@borrowed_book.errors.count, 'Error') %> Please fix the following issues:</h2>
+        <ul>
+          <% @borrowed_book.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= render 'form', borrowed_book: @borrowed_book %>
+<%= link_to 'Back to Borrowed Books', request.referer || borrowed_books_path %>
+  </div>
+</body>
+</html>

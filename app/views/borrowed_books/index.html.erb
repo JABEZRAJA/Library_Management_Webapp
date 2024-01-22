@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JRLibManagement</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+
+<body>
+  <div class="user-details">
+    <div style="display: flex; justify-content: space-between; align-items: center; height: 2pc;">
+      <h1>Borrowed Books</h1>
+    </div>
+    <% if @borrowed_books.any? %>
+      <table>
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Book</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>More</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @borrowed_books.each do |borrowed_book| %>
+            <tr>
+              <td><%= borrowed_book.user.email %></td>
+              <td><%= borrowed_book.book.title %></td>
+              <td><%= borrowed_book.borrow_date %></td>
+              <td><%= borrowed_book.return_date %></td>
+              <td><%= link_to 'Show', borrowed_book %></td>
+              <% if current_user && current_user.admin? %>
+                <td>
+              <td><%= link_to 'Destroy', borrowed_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <p>You haven't borrowed any books yet.</p>
+    <% end %>
+  </div>
+
+  <%= yield %>
+</body>
+
+</html>

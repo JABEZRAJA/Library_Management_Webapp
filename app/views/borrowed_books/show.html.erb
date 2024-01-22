@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JRLibManagement</title>
-      <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -26,39 +26,42 @@
     <div class="wrapper">
         <div class="user-card">
             <div class="user-card-img">
-                <div class="initials"><%= @user.first_name[0].upcase + @user.last_name[0].upcase %></div>
+                 <div class="initials">
+                      <%= image_tag @borrowed_book.book.image, style: 'width: auto;', loading: 'lazy' if @borrowed_book.book.image.present? %>
+                 </div>
             </div>
             <div class="user-card-info">
                 <div class="profile-header">
-                    <h2>Profile</h2>
-                    <p class="edit-link">
-                        <a href="<%= edit_user_registration_path(@user) %>">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </p>
+                    <h2>Lending Detail</h2>
                 </div>
                 <table>
                     <tr>
-                        <th class="cofd">First Name</th>
-                        <td class="cofd"><%= @user.first_name %></td>
+                        <th class="cofd">Name</th>
+                        <td class="cofd"><%= @borrowed_book.user.first_name %></td>
                     </tr>
                     <tr>
-                        <th class="cofd">Last Name</th>
-                        <td class="cofd"><%= @user.last_name %></td>
+                        <th class="cofd">Book Title</th>
+                        <td class="cofd"><%= @borrowed_book.book.title %></td>
                     </tr>
                     <tr>
-                        <th class="cofd">Email</th>
-                        <td class="cofd"><%= @user.email %></td>
+                        <th class="cofd">Borrowed On</th>
+                        <td class="cofd"><%= @borrowed_book.borrow_date %></td>
                     </tr>
                     <tr>
-                        <th class="cofd">Phone</th>
-                        <td class="cofd"><%= @user.phone_number %></td>
+                        <th class="cofd">Return Before</th>
+                        <td class="cofd"><%= @borrowed_book.return_date %></td>
                     </tr>
                 </table>
-                    <div style="display: flex; justify-content: space-around;">
-                        <%= link_to 'ㅤBackㅤ', authenticated_root_path, class: 'btn-back' %>
-                        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn-back', data: { confirm: 'Are you sure you want to log out?' } %>
-                    </div>
+                <% if current_user && current_user.admin? %>
+                    <p class="btn-back">
+                        <%= link_to 'Back', books_path %>
+                    </p>
+                <% else %>
+                <div class="button-container" style="margin-top: auto;">
+                    <%= link_to 'Back', borrowed_books_path, class: 'button' %>
+                    <%= link_to 'Return', @borrowed_book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button' %>
+                </div>
+                <% end %>
             </div>
         </div>
     </div>

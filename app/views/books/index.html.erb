@@ -15,9 +15,11 @@
   <div class="user-details">
     <div style="display: flex; justify-content: space-between; align-items: center; height: 2pc;">
       <h1>All Books</h1>
+    <% if current_user && current_user.admin? %>
       <%= link_to new_book_path, class: 'button' do %>
         <i class="fas fa-plus icon"></i> Add
       <% end %>
+    <% end %>
     </div>
     <table>
       <thead>

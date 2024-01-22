@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JRLibManagement</title>
-    <%# <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'common', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
@@ -20,15 +20,55 @@
             background-size: cover;
             font-family: 'Montserrat', sans-serif;
         }
+
+        .flash-message {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .flash-message .notice {
+            color: green;
+        }
+
+        .flash-message .alert {
+            color: red;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            text-align: center;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <div class="user-card">
             <div class="user-card-img">
-                 <div class="initials">
+                <div class="initials">
                     <%= image_tag @book.image, style: 'width: auto;', loading: 'lazy' if @book.image.present? %>
-                 </div>
+                </div>
             </div>
             <div class="user-card-info">
                 <div class="profile-header">
@@ -41,6 +81,17 @@
                         </p>
                     <% end %>
                 </div>
+                <div class="modal-overlay" id="modal-overlay"></div>
+                    <div class="modal" id="success-modal">
+                        <div class="modal-content">
+                            <p class="modal-message success">Book borrowed successfully!</p>
+                        </div>
+                    </div>
+                    <div class="modal" id="error-modal">
+                        <div class="modal-content">
+                            <p class="modal-message error">Error borrowing the book. Please try again.</p>
+                        </div>
+                    </div>
                 <table>
                     <tr>
                         <th class="cofd">Title</th>
@@ -71,15 +122,54 @@
                         <td class="cofd"><%= @book.published_date %></td>
                     </tr>
                 </table>
+                <div id="borrow-message" class="flash-message"></div>
                 <% if current_user && current_user.admin? %>
                     <p class="btn-back">
                         <%= link_to 'Back', books_path %>
                     </p>
                 <% else %>
-                    <!-- Add your code for the Borrow button or any other user-specific actions here -->
+                    <div class="button-container" style="margin-top: auto;">
+                        <%= link_to 'Back', books_path, class: 'button' %>
+                        <% if @book.copies > 0 && current_user.can_borrow?(@book) %>
+                        <%= link_to 'Borrow', borrowed_books_path(book_id: @book.id), class: 'button', remote: true, method: :post, id: 'borrow-button' %>
+                        <% else %>
+                        <%= button_tag 'Unavailable', class: 'button', disabled: true %>
+                        <% if !current_user.can_borrow?(@book) %>
+                            <p class="alert"><%= flash[:alert] %></p>
+                        <% end %>
+                        <% end %>
+                    </div>
                 <% end %>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var borrowButton = document.getElementById('borrow-button');
+
+            if (borrowButton) {
+                borrowButton.addEventListener('ajax:success', function(event) {
+                    showSuccessModal();
+                    setTimeout(function() {
+                        location.reload();
+                    }, 5000);
+                });
+
+                borrowButton.addEventListener('ajax:error', function(event) {
+                    showErrorModal();
+                });
+            }
+
+            function showSuccessModal() {
+                document.getElementById('success-modal').style.display = 'block';
+                document.getElementById('modal-overlay').style.display = 'block';
+            }
+
+            function showErrorModal() {
+                document.getElementById('error-modal').style.display = 'block';
+                document.getElementById('modal-overlay').style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
