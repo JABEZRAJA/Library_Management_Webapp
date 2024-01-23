@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      color: #3498db;
+    }
+
+    h4 {
+      color: #2ecc71;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+
+    .receipt-section {
+      border: 1px solid #ddd;
+      padding: 15px;
+      background-color: #f5f5f5;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    .receipt-details {
+      margin-top: 15px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .item span {
+      color: #333;
+    }
+
+    .footer {
+      margin-top: 20px;
+      color: #888;
+    }
+
+    .book-cover {
+      max-width: 100px;
+      max-height: 150px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2><strong>Hello, <%= @user.first_name %></strong></h2>
+
+  <h4>Thanks for using <strong>Library Management App</strong></h4>
+
+  <div class="receipt-section">
+    <p>You have successfully returned <strong><%= @book.title %></strong></p>
+
+    <div class="receipt-details">
+      <div class="item">
+        <span>Author</span>
+        <span><%= @book.author_name %></span>
+      </div>
+
+      <div class="item">
+        <span>Returned On</span>
+        <span><%= Time.current.strftime("%B %e, %Y") %></span>
+      </div>
+
+    </div>
+
+    <img src="<%= @book.image %>" alt="Image of <%= @book.title %>" style="max-width: 100px; max-height: 150px; margin-bottom: 10px;">
+    
+    <p>Please find the receipt below:</p>
+  </div>
+
+  <p class="footer">Happy learning</p>
+
+</body>
+</html>

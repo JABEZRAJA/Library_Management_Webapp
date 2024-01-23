@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    .receipt {
+      border: 2px solid #000;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .company-name {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .book-info {
+      margin-top: 20px;
+    }
+
+    .book-info img {
+      max-width: 100px;
+      max-height: 150px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt">
+    <div class="company-name">
+      Library Management
+    </div>
+    <div class="book-info">
+      <%= image_tag @book.image, alt: "Book Cover", style: "max-width: 100px; max-height: 150px; margin-bottom: 10px;" %>
+      <p><strong>Title:</strong> <%= @book.title %></p>
+      <p><strong>Author:</strong> <%= @book.author_name %></p>
+      <p><strong>Borrowed Date:</strong> <%= Time.now.strftime("%Y-%m-%d") %></p>
+      <p><strong>Return Date:</strong> <%= (Time.now + 7.days).strftime("%Y-%m-%d") %></p>
+    </div>
+  </div>
+</body>
+</html>

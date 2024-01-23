@@ -54,11 +54,11 @@
                 </table>
                 <% if current_user && current_user.admin? %>
                     <p class="btn-back">
-                        <%= link_to 'Back', books_path %>
+                        <%= link_to 'Back', :back %>
                     </p>
                 <% else %>
                 <div class="button-container" style="margin-top: auto;">
-                    <%= link_to 'Back', borrowed_books_path, class: 'button' %>
+                    <%= link_to 'Back', :back, class: 'button' %>
                     <%= link_to 'Return', @borrowed_book, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button' %>
                 </div>
                 <% end %>

@@ -33,6 +33,14 @@ gem 'jbuilder', '~> 2.5'
 # Use Devise for user
 gem 'devise'
 
+# Sidekiq
+gem 'sidekiq'
+
+# Use to send PDF via mails
+gem 'wicked_pdf'
+
+gem 'wkhtmltopdf-binary'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

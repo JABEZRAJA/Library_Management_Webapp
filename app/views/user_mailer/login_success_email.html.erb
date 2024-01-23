@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 80%;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    h1 {
+      color: #333333;
+    }
+
+    p {
+      color: #666666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <%# <h1>Welcome back, <%= @user.first_name 🌟</h1> %>
+    <h1>Login Successfull</h1>
+    <p>Hello <%= @user.email %>,</p>
+    <p>Your login was a success. We're thrilled to have you back in the groove of our application. Thanks for choosing us, and if there's anything you need, we're here to make your experience awesome!</p>
+  </div>
+</body>
+</html>

@@ -10,10 +10,21 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
   }
 
+  .navbar a{
+    text-decoration: none;
+  }
+
   .logo {
     max-height: 30px;
     margin-right: 4pc;
     margin-left: 1pc;
+  }
+
+  .title{
+    margin-left: 0px;
+    margin-right: 7pc;
+    color: #900c19;
+    font-size: 18px;
   }
 
   .search-bar {
@@ -42,29 +53,35 @@
 
 <nav class="navbar">
   <%= link_to authenticated_root_path do %>
-    <%= image_tag('https://img.freepik.com/premium-vector/black-white-logo-letter-jr_773552-361.jpg', alt: 'Your Logo', class: 'logo', style: 'margin-right: 7pc;') %>
+    <%= image_tag('https://img.freepik.com/premium-vector/black-white-logo-letter-jr_773552-361.jpg', alt: 'Your Logo', class: 'logo', style: 'margin-right: 2pc;') %>
   <% end %>
 
-    <div class="search-bar">
+<%= link_to authenticated_root_path do %>
+  <p class="title">Library Management</p>
+<% end %>
+
+  <div class="search-bar">
     <%= form_tag(search_books_path, method: :get) do %>
       <%= text_field_tag :query, params[:query], placeholder: 'Search...', class: 'search-i' %>
       <%= submit_tag 'Search', class: 'search-button' %>
     <% end %>
   </div>
 
-  <%= link_to authenticated_root_path do %>
-    <%= image_tag('https://banner2.cleanpng.com/20180421/bfe/kisspng-computer-icons-home-house-download-home-logo-5adb1dd63a2a06.1427934615243094622383.jpg', alt: 'Your Logo', class: 'logo') %>
-  <% end %>
-
   <!-- Cart Image -->
-  <%# <%= link_to borrowed_books_path do ########this will show all the borrowed books by all users###### %>
-  <%= link_to user_borrowed_books_borrowed_books_path do%>
-    <%= image_tag('https://play-lh.googleusercontent.com/G0-Q7SGCxnnbtLG10ohlb65zpdAzhQmBOcpAHfBh7sO7LMajwXZ_Jl-TbyUDmPdxmxI', alt: 'Shopping Cart', class: 'logo') %>
+  <%# <%= link_to borrowed_books_path do ########this will show all the borrowed books by all users######%>
+  <% if current_user && !current_user.admin? %>
+    <%= link_to user_borrowed_books_borrowed_books_path do %>
+      <%= image_tag('https://cdn.pixabay.com/photo/2017/01/31/00/09/books-2022463_1280.png', alt: 'Shopping Cart', class: 'logo', style: 'margin-right: 7pc; margin-left: 10pc;') %>
+    <% end %>
+  <% else %>
+    <%= link_to borrowed_books_path do %>
+      <%= image_tag('https://cdn-icons-png.flaticon.com/512/4254/4254577.png', alt: 'Shopping Cart', class: 'logo', style: 'margin-right: 7pc; margin-left: 10pc;') %>
+    <% end %>
   <% end %>
 
   <% if current_user %>
     <%= link_to profile_path(current_user) do %>
-      <%= image_tag('https://i.pinimg.com/originals/61/f7/5e/61f75ea9a680def2ed1c6929fe75aeee.jpg', alt: 'User Profile', class: 'logo') %>
+      <%= image_tag('https://i.pinimg.com/originals/61/f7/5e/61f75ea9a680def2ed1c6929fe75aeee.jpg', alt: 'User Profile', class: 'logo', style: 'margin-right: 5pc;') %>
     <% end %>
   <% end %>
 

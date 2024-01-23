@@ -113,7 +113,7 @@ body {
     position: relative;
     width: 13pc;
     border: 1px solid #d5c8aa;
-    font-size: 15px;
+    font-size: 17px;
     font-family: 'Philosopher',serif;
     outline: none;
 }
@@ -363,4 +363,25 @@ background-color: #f4f4f4;
 .btn-back a{
     color: #f2c452;
     text-decoration: none;
+}
+
+
+.notice, .alert {
+  position: fixed;
+  top: 5pc;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px; /* Adjust the font size as needed */
+  z-index: 1000;
+}
+
+.notice {
+  color: #f2c452;
+}
+
+.alert {
+  color: white;
 }

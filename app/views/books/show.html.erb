@@ -125,11 +125,11 @@
                 <div id="borrow-message" class="flash-message"></div>
                 <% if current_user && current_user.admin? %>
                     <p class="btn-back">
-                        <%= link_to 'Back', books_path %>
+                        <%= link_to 'Back', :back %>
                     </p>
                 <% else %>
                     <div class="button-container" style="margin-top: auto;">
-                        <%= link_to 'Back', books_path, class: 'button' %>
+                        <%= link_to 'Back', :back, class: 'button' %>
                         <% if @book.copies > 0 && current_user.can_borrow?(@book) %>
                         <%= link_to 'Borrow', borrowed_books_path(book_id: @book.id), class: 'button', remote: true, method: :post, id: 'borrow-button' %>
                         <% else %>

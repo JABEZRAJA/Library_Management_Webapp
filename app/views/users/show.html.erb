@@ -26,7 +26,7 @@
     <div class="wrapper">
         <div class="user-card">
             <div class="user-card-img">
-                <div class="initials"><%= @user.first_name[0].upcase + @user.last_name[0].upcase %></div>
+                <div class="initials" style="height: 10; height: 160px; width: 160px; margin-top: 1.5pc;"><%= @user.first_name[0].upcase + @user.last_name[0].upcase %></div>
             </div>
             <div class="user-card-info">
                 <div class="profile-header">
@@ -57,7 +57,7 @@
                 </table>
                     <div style="display: flex; justify-content: space-around;">
                         <%= link_to 'ㅤBackㅤ', authenticated_root_path, class: 'btn-back' %>
-                        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn-back', data: { confirm: 'Are you sure you want to log out?' } %>
+                        <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'btn-back', data: { confirm: 'Are you sure you want to log out?' }, style: 'background-color: #f5f1e9;' %>
                     </div>
             </div>
         </div>

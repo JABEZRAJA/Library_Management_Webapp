@@ -11,7 +11,7 @@
 
 <body>
   <div class="user-details">
-    <div style="display: flex; justify-content: space-between; align-items: center; height: 2pc;">
+    <div style="display: flex; justify-content: center; align-items: center; height: 2pc;">
       <h1>Borrowed Books</h1>
     </div>
     <% if @borrowed_books.any? %>
@@ -20,9 +20,11 @@
           <tr>
             <th>User</th>
             <th>Book</th>
-            <th>Borrow Date</th>
-            <th>Return Date</th>
+
             <th>More</th>
+              <% if current_user && current_user.admin? %>
+                <th>Destroy</th>
+              <% end %>
           </tr>
         </thead>
         <tbody>
@@ -30,13 +32,9 @@
             <tr>
               <td><%= borrowed_book.user.email %></td>
               <td><%= borrowed_book.book.title %></td>
-              <td><%= borrowed_book.borrow_date %></td>
-              <td><%= borrowed_book.return_date %></td>
               <td><%= link_to 'Show', borrowed_book %></td>
               <% if current_user && current_user.admin? %>
-                <td>
-              <td><%= link_to 'Destroy', borrowed_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </td>
+              <td><%= link_to 'Remove', borrowed_book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <% end %>
             </tr>
           <% end %>

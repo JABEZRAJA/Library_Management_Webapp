@@ -26,14 +26,7 @@
   <div class="container">
     <h1 style="text-align: center;font-family: 'Philosopher',serif;font-weight: 200;">Login <%= resource_name.to_s.humanize %></h1>
     <% if @user.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@user.errors.count, 'Error') %> Please fix the following issues:</h2>
-        <ul>
-          <% @user.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
+
     <% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
