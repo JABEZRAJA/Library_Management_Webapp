@@ -49,12 +49,12 @@
       <%= image_tag @book.image, alt: "Book Cover", style: "max-width: 100px; max-height: 150px; margin-bottom: 10px;" %>
       <p><strong>Title:</strong> <%= @book.title %></p>
       <p><strong>Author:</strong> <%= @book.author_name %></p>
-      <p><strong>Borrowed Date:</strong> <%= Time.now.strftime("%Y-%m-%d") %></p>
+      <p><strong>Borrowed On:</strong> <%= Time.now.strftime("%Y-%m-%d") %></p>
       <p><strong>Return Date:</strong> <%= (Time.now + 7.days).strftime("%Y-%m-%d") %></p>
     </div>
 
     <div class="borrow-info">
-      <p>You've successfully borrowed "<strong><%= @book.title %></strong>" as of <%= Time.now.strftime("%Y-%m-%d") %>. Please make sure to return the book within the next 7 days.</p>
+      <p>You've successfully borrowed "<strong><%= @book.title %></strong>" On <%= Time.now.strftime("%Y-%m-%d") %>. Please make sure to return the book within the next 7 days.</p>
     </div>
   </div>
 </body>

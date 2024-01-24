@@ -2,11 +2,15 @@ class BorrowedBook < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
-  validates_presence_of :borrow_date, :return_date
-  after_commit :send_email_user
+  validates :user_id, presence: true
+  validates :book_id, presence: true
+  validates :borrow_date, presence: true
+  validates :return_date, presence: true
   validates :user_id, uniqueness: { scope: [:book_id, :returned], message: 'You have already borrowed this book.' }, if: -> { returned == false }
 
-  def send_email_user
-    # yet to come
-  end
+  # after_commit :send_email_user
+
+  # def send_email_user
+  #   # Implementation for sending email to the user after book is borrowed.
+  # end
 end

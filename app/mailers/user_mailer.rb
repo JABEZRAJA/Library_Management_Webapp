@@ -10,7 +10,7 @@ class UserMailer < ApplicationMailer
     attachments['receipt.pdf'] = WickedPdf.new.pdf_from_string(
       render_to_string(pdf: 'MyPDF', template: 'borrowed_books/borrowed_books_pdf.html')
     )
-    mail(to: @user.email, subject: 'User Book Rent Alert') do |format|
+    mail(to: @user.email, subject: 'Book Borrowed Successfully - Happy Reading!') do |format|
       format.html { render layout: 'mailer.html' }
     end
   end
@@ -21,6 +21,6 @@ class UserMailer < ApplicationMailer
     attachments['receipt.pdf'] = WickedPdf.new.pdf_from_string(
       render_to_string(pdf: 'MyPDF', template: 'borrowed_books/returned_books_pdf.html')
     )
-    mail(to: @user.email, subject: 'User Book UnRent Alert')
+    mail(to: @user.email, subject: 'Book Returned: Your Library Transaction is Complete')
   end
 end
