@@ -66,37 +66,36 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= f.text_field :phone_number %>
+    <%= f.label :phone_number %>
+    <%= f.text_field :phone_number, required: true %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", id: 'user_password' %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", id: 'user_password', placeholder: "Minimum 8 required", required: true %>
       <div id="password-strength"></div>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
   </div>
 
   <div class="field" style="display: none;">

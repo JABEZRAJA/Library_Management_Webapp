@@ -5,9 +5,9 @@ class UsersController < ApplicationController
     render json: { error: 'User not found' }, status: 404 unless @user&.id == params[:id].to_i
   end
 
-  #   def index
-  #     @all_users = User.all
-  #   end
+  def index
+    @all_users = User.all
+  end
 
   # def edit
   #   @user = User.find_by(id: params[:id])
